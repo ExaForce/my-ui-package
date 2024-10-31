@@ -1,0 +1,46 @@
+# .github/workflows/publish.yml
+name: Publish Package
+
+on:
+  workflow_dispatch: # Allow manual trigger
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write      # Required for provenance
+      packages: write      # Required for publishing
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Add this step for npm authentication
+      - name: Setup npm authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Install dependencies
+        run: cd jakub/my-ui-package; npm ci
+        
+      - name: Run tests
+        run: cd jakub/my-ui-package; npm test
+        
+      # Optional: Build step if needed
+      - name: Build
+        run: cd jakub/my-ui-package;npm run build
+
+      # Publish with provenance
+      - name: Publish to NPM
+        run: cd jakub/my-ui-package; npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
