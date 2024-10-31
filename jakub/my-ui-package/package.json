@@ -12,6 +12,15 @@
     "test": "jest",
     "prepare": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExaForce/my-ui-package.git"
+  },
+  "author": "Jakub Pavlik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ExaForce/my-ui-package/issues"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/",
