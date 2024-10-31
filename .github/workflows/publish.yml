@@ -9,7 +9,8 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
     permissions:
       contents: read
       id-token: write      # Required for provenance
