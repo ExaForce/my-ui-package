@@ -41,7 +41,7 @@ jobs:
 
       # Publish with provenance
       - name: Publish to NPM
-        run: cd jakub/my-ui-package; npm publish --provenance --access public
+        run: cd jakub/my-ui-package; npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
