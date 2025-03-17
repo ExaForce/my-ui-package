@@ -17,10 +17,10 @@ jobs:
       packages: write      # Required for publishing
 
     steps:
-      - uses: actions/checkout@v4
-      
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e
         with:
           node-version: '20'
 
@@ -31,10 +31,10 @@ jobs:
 
       - name: Install dependencies
         run: cd jakub/my-ui-package; npm ci
-        
+
       - name: Run tests
         run: cd jakub/my-ui-package; npm test
-        
+
       # Optional: Build step if needed
       - name: Build
         run: cd jakub/my-ui-package;npm run build
